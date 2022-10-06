@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Homepage
+{% endblock %}
+
+{% block main %}
+    <table class="table">
+        <thead>
+            <tr class="solidlinetable">
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>TOTAL</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for row in balance_share %}
+            <tr class="solidlinetable">
+                <td>{{ row.symbol }}</td>
+                <td>{{ row.share_name }}</td>
+                <td>{{ row.sum_quantity }}</td>
+                <td>{{ row.price_share_usd }}</td>
+                <td>{{ row.total_sum_usd }}</td>
+            </tr>
+        {% endfor %}
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <th>Cash</th>
+                <th>{{ balance_cash }}</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <th>Total</th>
+                <th>{{ total }}</th>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

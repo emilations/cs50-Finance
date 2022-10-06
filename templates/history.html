@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <table class="table">
+        <thead>
+            <tr class="solidlinetable">
+                <th>Symbol</th>
+                <th>Quantity</th>
+                <th>Price per share</th>
+                <th>Price per transaction</th>
+                <th>Transaction time</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for row in transactions %}
+            <tr class="solidlinetable">
+                <td>{{ row.symbol }}</td>
+                <td>{{ row.quantity }}</td>
+                <td>{{ row.price_share }}</td>
+                <td>{{ row.price_transaction }}</td>
+                <td>{{ row.transaction_time }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

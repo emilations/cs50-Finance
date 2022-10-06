@@ -1,0 +1,43 @@
+/* Size for brand */
+nav .navbar-brand
+{
+    font-size: xx-large;
+}
+
+/* Colors for brand */
+nav .navbar-brand .blue
+{
+    color: #537fbe;
+}
+nav .navbar-brand .red
+{
+    color: #ea433b;
+}
+nav .navbar-brand .yellow
+{
+    color: #f5b82e;
+}
+nav .navbar-brand .green
+{
+    color: #2e944b;
+}
+
+.table>:not(:first-child){
+    border-top: none;
+}
+
+.solidlinetable{
+    border-bottom: 2px solid currentColor;
+}
+
+.table
+{
+    max-width : 50%;
+    margin : 15px 25%;
+}
+
+@media screen and (max-width: 730px) {
+    .table {
+        max-width: 80%;
+        margin: 15px 10% ;
+    }
