@@ -46,7 +46,7 @@ def after_request(response):
 def index():
     # retrieve the balance and the record for all transaction of the session user
     balance_share = db.execute(
-        "SELECT username_id, symbol, share_name, SUM (quantity) as sum_quantity, price_share, quantity, quantity*price_share AS total_sum FROM transactions WHERE username_id = ? ", session.get("user_id"))
+        "SELECT username_id, symbol, share_name, SUM (quantity) as sum_quantity, price_share, quantity, quantity*price_share AS total_sum FROM transactions WHERE username_id = ? GROUP BY username_id", session.get("user_id"))
     total_sum = 0
     for row in balance_share:
         newprice = (lookup(row["symbol"]))["price"]
