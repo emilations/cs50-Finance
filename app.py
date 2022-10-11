@@ -46,7 +46,7 @@ def after_request(response):
 def index():
     # retrieve the balance and the record for all transaction of the session user
     balance_share = db.execute(
-        "SELECT DISTINCT ON username_id, symbol, share_name, SUM (quantity) as sum_quantity, price_share, quantity, quantity*price_share AS total_sum FROM transactions WHERE username_id = ? GROUP BY symbol", session.get("user_id"))
+        "SELECT DISTINCT ON (username_id), symbol, share_name, SUM (quantity) as sum_quantity, price_share, quantity, quantity*price_share AS total_sum FROM transactions WHERE username_id = ? GROUP BY symbol", session.get("user_id"))
     total_sum = 0
     for row in balance_share:
         newprice = (lookup(row["symbol"]))["price"]
@@ -57,7 +57,7 @@ def index():
         row["price_share_usd"] = usd(newprice)
         row["total_sum_usd"] = usd(row["total_sum"])
     # retrieve the cash balance of the user and calculate the total assets the user has
-    balance_cash = db.execute("SELECT DISTINCT ON cash FROM users WHERE id = ?", session.get("user_id"))
+    balance_cash = db.execute("SELECT DISTINCT ON (cash) FROM users WHERE id = ?", session.get("user_id"))
     balance_cash = balance_cash[0]["cash"]
     total_sum = balance_cash + total_sum
     return render_template("index.html", balance_cash=usd(balance_cash), balance_share=balance_share, total=usd(total_sum))
